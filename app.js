@@ -18,11 +18,11 @@ app.get("/", (req, res) => {
 
 	// Check if the host contains "localhost"
 	if (host.includes("localhost")) {
-		console.log("Request is from localhost");
+		// console.log("Request is from localhost");
 	  	url = 'http://localhost/fixorfix';
 	  	// Handle localhost request
 	} else {
-	  	console.log("Request is from live URL");
+	  	// console.log("Request is from live URL");
 	  	// Handle live URL request
 		  url = 'https://vcomm-d1305033bf12.herokuapp.com/';
 	}
@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
    	// Redirect to the /test route
     	res.redirect(url);
   }
-	// res.sendFile(__dirname + "/public/index.html");
+	res.sendFile(__dirname + "/public/index.html");
 });
 
 app.use(express.static("public"));
