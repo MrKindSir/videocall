@@ -40,6 +40,41 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
+app.get("/test", (req, res) => {
+  	// console.log("Received request:", req);
+  	// console.log("Received query parameters:", req.query);
+  	var url = '';
+  	const { cookies } = req.query;
+  	// Get the host from the request headers
+	const host = req.headers.host;
+
+	// Check if the host contains "localhost"
+	if (host.includes("localhost")) {
+		console.log("Request is from localhost");
+	  	url = 'http://localhost/fixorfix';
+	  	// Handle localhost request
+	} else {
+	  	console.log("Request is from live URL");
+	  	// Handle live URL request
+		url = 'https://www.fixorfix.com/';
+	}
+  if (cookies === undefined) {
+    // Redirect to the /test route
+    res.redirect(url);
+  }
+  const cookieValues = JSON.parse(cookies);
+
+  // Access individual cookie values
+  const { email, token } = cookieValues;
+
+  // Use the cookies as needed
+  console.log("Email:", email);
+  console.log("Token:", token);
+  // console.log("Current Plan:", current_plan);
+
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 let connectedPeers = [];
 let connectedPeersStrangers = [];
 
