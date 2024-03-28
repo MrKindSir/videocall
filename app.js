@@ -12,7 +12,7 @@ app.use(cookieParser()); // Use cookie-parser middleware
 
 app.get("/", (req, res) => {
 	var url = '';
-	// const { cookies } = req.query;
+	const { cookies } = req.query;
 	// Get the host from the request headers
 	const host = req.headers.host;
 
