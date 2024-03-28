@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 	} else {
 	  	console.log("Request is from live URL");
 	  	// Handle live URL request
-		  url = 'https://localhost/fixorfix';
+		  url = ' https://vcomm-d1305033bf12.herokuapp.com/';
 	}
 
   	if (cookies === undefined) {
