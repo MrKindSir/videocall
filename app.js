@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 	} else {
 	  	console.log("Request is from live URL");
 	  	// Handle live URL request
-		  url = ' https://fixorfix.com/';
+		  url = ' https://www.fixorfix.com/';
 	}
 
   	if (cookies === undefined) {
