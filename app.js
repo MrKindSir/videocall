@@ -1,14 +1,11 @@
 const express = require("express");
 const http = require("http");
-const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server);
-
-app.use(cookieParser()); // Use cookie-parser middleware
 
 app.use(express.static("public"));
 
