@@ -1,11 +1,38 @@
 const express = require("express");
 const http = require("http");
+const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 const server = http.createServer(app);
 const io = require("socket.io")(server);
+
+app.use(cookieParser()); // Use cookie-parser middleware
+
+app.get("/", (req, res) => {
+	var url = '';
+	// const { cookies } = req.query;
+	// Get the host from the request headers
+	const host = req.headers.host;
+
+	// Check if the host contains "localhost"
+	if (host.includes("localhost")) {
+		console.log("Request is from localhost");
+	  	url = 'http://localhost/fixorfix';
+	  	// Handle localhost request
+	} else {
+	  	console.log("Request is from live URL");
+	  	// Handle live URL request
+		  url = 'https://vcomm-d1305033bf12.herokuapp.com/';
+	}
+
+  	if (cookies === undefined) {
+   	// Redirect to the /test route
+    	res.redirect(url);
+  }
+	// res.sendFile(__dirname + "/public/index.html");
+});
 
 app.use(express.static("public"));
 
