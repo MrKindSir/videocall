@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const cookieParser = require("cookie-parser");
+const twilio = require("twilio");
 
 const PORT = process.env.PORT || 3000;
 
@@ -39,6 +40,19 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+
+app.get("/api/get-turn-credentials", (req, res) => {
+  	const accountSid = 'AC7794aa332907dc7f28ae7eed7eda31b9';
+  	const authToken  = 'e2a414c654c7b1dc2a65ad980c3f5b8e';
+  	const client     = twilio(accountSid, authToken); 
+
+  	client.tokens.create().then((token) => res.send({ token })).catch(err=>{
+   	console.log(err);
+    	res.send({message: 'Failed To Fetch TURN Credentials', err});
+  	})
+});
+
+
 
 app.get("/test", (req, res) => {
   	// console.log("Received request:", req);
