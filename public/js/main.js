@@ -8,7 +8,7 @@ import * as strangerUtils from "./strangerUtils.js";
 
 const getTurnSeverCredntials = async () => {
   const responseData = await axios.get('/api/get-turn-credentials');
-  console.log(responseData.data.token.iceServers);  
+  // console.log(responseData.data.token.iceServers);  
   webRTCHandler.setTURNServers(responseData.data.token.iceServers);
 }
 
